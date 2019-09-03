@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<!--
+	Identity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>多元一次方程組計算機</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<h1>多元一次方程組計算機</h1>
+							<ul>
+							<li>項與項之間請用"+"隔開 (ex:2x+-3y+7z=5)</li>
+							<li>方程式之間請用","隔開</li>
+							<li>請將未知數照相同順序排列</li>
+							<li>請勿省略係數為0之未知數</li>
+							</ul>
+							<input id="input" type="text" rows="10" value="2x+3y=7,4x+3y=11">
+							<button onclick="onbutton()" style="margin:5%">開始運算</button>
+						</header>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; 作者 武陵高中 21506 林沅霖</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+
+				function determinant(m,L) {
+            var ai, i, j , ans = 0 , lans = 0;
+
+            var x, x_length = 100
+            , y, y_length = 100
+            , temp = []
+
+            for (x = 0; x < x_length; x++) {
+            temp[x] = []
+                for (y = 0; y < y_length; y++) {
+                    temp[x][y] = []
+                }
+            }
+    
+            if (m <= 2)
+            {
+                ans = L[0][0] * L[1][1] - L[1][0] * L[0][1];
+                return ans;
+            }
+            else
+                for (ai = 0; ai < m; ai++)
+                {
+                    for (i = 0; i < m - 1; i++)
+                        for (j = 0; j < ai; j++)
+                            temp[i][j] = L[i + 1][j];
+                    for (i = 0; i < m - 1; i++)
+                        for (j = 0; j < (m - ai - 1); j++)
+                            temp[i][ai + j] = L[i + 1][ai + j + 1];
+                    if ((ai % 2) == 0){
+                        lans = L[0][ai] * determinant(m - 1, temp);
+                    }
+                    else{
+                        lans = -1 * L[0][ai] * determinant(m - 1, temp);
+                    }
+                    ans = ans + lans;
+                }
+            return ans;
+        }
+
+        function onbutton(){
+            值 = document.getElementById("input").value;
+            式 = 值.split(',');
+
+            var x1, x_length = 式.length
+                , y1, y_length = 式.length
+                , 二維矩陣 = []
+
+            for (x1 = 0; x1 < x_length; x1++) {
+                二維矩陣[x1] = []
+                for (y1 = 0; y1 < y_length; y1++) {
+                    二維矩陣[x1][y1] = []
+                }
+            }
+
+            for(j=0;j <= 式.length - 1 ; j++){
+                係數 = 式[j].split('+');
+                for(i=0 ; i <= 係數.length -1; i++){
+                    if(i == 係數.length -1){
+                        係數[i+1] = 係數[i].split('=')[1];
+                        係數[i] = 係數[i].split('=')[0];
+                        係數[i] = 係數[i].replace("-","9453");
+                        係數[i] = 係數[i].replace(/[^0-9]/g,"");
+                        係數[i] = 係數[i].replace("9453","-");
+                        二維矩陣[j][i] = 係數[i];
+                        係數[i+1] = 係數[i+1].replace("-","9453");
+                        係數[i+1] = 係數[i+1].replace(/[^0-9]/g,"");
+                        係數[i+1] = 係數[i+1].replace("9453","-");
+                        二維矩陣[j][i+1] = 係數[i+1];
+                        var g = i+1;
+                        break;
+                    }
+                    係數[i] = 係數[i].replace("-","9453");
+                    係數[i] = 係數[i].replace(/[^0-9]/g,"");
+                    係數[i] = 係數[i].replace("9453","-");
+                    二維矩陣[j][i] = 係數[i];
+                }
+            }
+
+            var x2 , y2 , delta = []
+            for (x2 = 0; x2 < 式.length; x2++) {
+                delta[x2] = 二維矩陣[x2]
+                for (y2 = 0; y2 < 式.length; y2++) {
+                    delta[x2][y2] = 二維矩陣[x2][y2]
+                }
+            }
+
+            var delta3d = []
+            for (x4 = 0; x4 < 式.length; x4++) {
+                delta3d[x4] = []
+                for (y4 = 0; y4 < 式.length; y4++) {
+                    delta3d[x4][y4] = []
+                    for (z4 = 0; z4 < 式.length; z4++) {
+                    delta3d[x4][y4][z4] = []
+                }
+                }
+            }
+
+            for (項 = 0; 項 < 式.length; 項++) {
+                for (x5 = 0; x5 < 式.length; x5++) {
+                    for (y5 = 0; y5 < 式.length; y5++) {
+                        if(y5==項){
+                            delta3d[項][x5][y5] = 二維矩陣[x5][式.length]
+                        }else{
+                            delta3d[項][x5][y5] = delta[x5][y5]
+                        }
+                    }
+                }
+                var f = 項+1
+                alert("第" +f +"項未知數之解為" + determinant(delta3d[項].length,delta3d[項]) / determinant(delta.length,delta))
+            }
+        }
+			</script>
+
+	</body>
+</html>
