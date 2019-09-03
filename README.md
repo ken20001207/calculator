@@ -2,7 +2,7 @@
 
 This project is a practice for the "Cramer's rule",  
 which can used to resovle the math problem of simultaneous equations.  
-I made this web page for my math homework.  
+I made this web page for my senior high school math homework.  
 
 ## About developer
 
