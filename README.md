@@ -1,11 +1,11 @@
 # Calculator
 
-This project is a practice for the "Cramer's rule",__
-which can used to resovle the math problem of simultaneous equations.__
-I made this web page for my math homework.__
+This project is a practice for the "Cramer's rule",  
+which can used to resovle the math problem of simultaneous equations.  
+I made this web page for my math homework.  
 
 ## About developer
 
-Yuan-Lin, Lin.__
-Minecraft Server Owner, Spigot plugin develper.__
-Studying in Zhejian University, major in Computer Science and Technology.__
+Yuan-Lin, Lin.  
+Minecraft Server Owner, Spigot plugin develper.  
+Studying in Zhejian University, major in Computer Science and Technology.  
