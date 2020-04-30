@@ -13,9 +13,3 @@ This web page publish in https://510659.netlify.com/ .
 4. Don't ignore the term whose coefficient equals 0 or 1.  
   
 There is an valid input example : 2X+6Y=20,1X+-2Y=0  
-
-## About developer
-
-Yuan-Lin, Lin.  
-Minecraft Server Owner, Spigot plugin develper.  
-Studying in Zhejian University, major in Computer Science and Technology.  
