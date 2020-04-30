@@ -1,3 +1,5 @@
+> :warning: **No longer update**: This repo is just a homework during senior high.
+
 # Calculator
 
 This project is a practice for the "Cramer's rule",  
